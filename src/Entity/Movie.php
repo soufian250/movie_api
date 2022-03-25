@@ -27,6 +27,24 @@ class Movie
      */
     private $releaseDate;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $shareCount;
+
+    public function getShareCount(): ?int
+    {
+        return $this->shareCount;
+    }
+
+    public function setShareCount(string $shareCount): self
+    {
+        $this->shareCount = $shareCount;
+
+        return $this;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

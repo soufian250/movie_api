@@ -28,10 +28,8 @@ class ShareViaEmailHandler implements MessageHandlerInterface
 
     public function __invoke(ShareViaEmail $message)
     {
-        $movie_link = 'https://www.imdb.com/title/tt1596345/?ref_=vp_back';
 
-
-        $this->shareEmailService->share($message);
+        $this->shareEmailService->share($message->getId());
 
     }
 }

@@ -87,7 +87,6 @@ class MovieController extends AbstractController
             'GET',
             $url
         );
-
         $content = $response->toArray();
 
         $response = new Response(json_encode(['content'=>$content]));
@@ -112,7 +111,8 @@ class MovieController extends AbstractController
 
             $data = $form->getData();
 
-            $messageBus->dispatch(new ShareViaEmail(2));
+
+            $messageBus->dispatch(new ShareViaEmail(intval($data['name'])));
 
             $response = new Response(json_encode(['content'=>'Email sent successfully']));
             $response->headers->set('Content-Type', 'application/json');
