@@ -3,11 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Movie;
+use App\Form\ShareMovieFormType;
+use App\Message\ShareViaEmail;
+use App\ShareEmailService;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\Exception\TransportException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -96,25 +101,28 @@ class MovieController extends AbstractController
     /**
      * @Route("/share", name="share")
      */
-    public function shareMovie(MailerInterface $mailer): Response
+    public function shareMovie(Request $request, MessageBusInterface $messageBus): Response
     {
-        $movie_link = 'https://www.imdb.com/title/tt1596345/?ref_=vp_back';
 
-        $email = (new Email())
-            ->from('learndevsho@gmail.com')
-            ->to('soufianjill@gmail.com')
-            ->subject('Check out this link on Themoviedb!')
-            ->text('Sending emails is fun again!')
-            ->html('<p>Check This movie</p> <a href="'.$movie_link.'">'.$movie_link.'</a>');
+        $form = $this->createForm(ShareMovieFormType::class,[]);
 
+        $form->handleRequest($request);
 
-        $mailer->send($email);
+        if ($form->isSubmitted() && $form->isValid()){
 
+            $data = $form->getData();
 
-        $response = new Response(json_encode(['content'=>1]));
-        $response->headers->set('Content-Type', 'application/json');
+            $messageBus->dispatch(new ShareViaEmail(2));
 
-        return $response;
+            $response = new Response(json_encode(['content'=>'Email sent successfully']));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+
+        }
+
+        return $this->renderForm('movie/new.html.twig', [
+            'form' => $form,
+        ]);
 
     }
 
