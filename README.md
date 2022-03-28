@@ -1,5 +1,6 @@
 ##Movie API
 
+L'environnement de travail est **Symfony**
 
 Requirements
 ------------
