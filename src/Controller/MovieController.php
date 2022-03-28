@@ -104,8 +104,9 @@ class MovieController extends AbstractController
     {
 
 //        Une route api permettant d'avoir le détail d'un film.
-
-        $url =  "https://api.themoviedb.org/3/movie/508947?api_key=c89646cb9c2f9f7a6144c074fff0e9c7&language=en-US";
+       
+        $id = $request->attributes->get('id');
+        $url =  "https://api.themoviedb.org/3/movie/".$id."?api_key=c89646cb9c2f9f7a6144c074fff0e9c7&language=en-US";
 
 
         $response = $this->client->request(
