@@ -17,11 +17,6 @@ $ composer install
 ```
 
 
-Démarer le serveur 
-```bash
-$ symfony server:start
-```
-
 ####- Configurer le fichier .env 
 `DATABASE_URL`
 `MAILER_DSN`
@@ -44,9 +39,13 @@ Creating the Database Tables/Schema
 $ bin/console doctrine:migrations:migrate
 ```
 
+Démarer le serveur
+```bash
+$ symfony server:start
+```
 
 
-Utilisez cette commande pour Asyn Emailing
+Utilisez cette commande pour activer l'envoi des mails en mode Async
 ```bash
 $ php bin/console messenger:consume async -vv
 ```

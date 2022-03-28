@@ -64,16 +64,16 @@ class Movie
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $externId;
+    private $themoviedbId;
 
-    public function getexternId(): ?string
+    public function getThemoviedbId(): ?string
     {
-        return $this->externId;
+        return $this->themoviedbId;
     }
 
-    public function setexternId(string $externId): self
+    public function setThemoviedbId(string $themoviedbId): self
     {
-        $this->externId = $externId;
+        $this->themoviedbId = $themoviedbId;
         return $this;
     }
 

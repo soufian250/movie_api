@@ -36,8 +36,7 @@ class ShareEmailService
         $id = strtok($last_part, '-');
 
 
-
-        $movie = $this->entityRepository->getRepository(Movie::class)->findByExternId($id);
+        $movie = $this->entityRepository->getRepository(Movie::class)->findByThemoviedbId($id);
 
 
         if ($movie){
@@ -69,7 +68,7 @@ class ShareEmailService
             $date =  new \DateTime($film['release_date']);
             $movie->setOverview($film['overview']);
             $movie->setReleaseDate($date);
-            $movie->setexternId($film['id']);
+            $movie->setThemoviedbId($film['id']);
 
             $movie->setShareCount(1);
 

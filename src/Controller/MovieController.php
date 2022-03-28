@@ -65,7 +65,7 @@ class MovieController extends AbstractController
                 $date =  new \DateTime($film['release_date']);
                 $movie->setOverview($film['overview']);
                 $movie->setReleaseDate($date);
-                $movie->setexternId($film['id']);
+                $movie->setThemoviedbId($film['id']);
 
                 $em->persist($movie);
                 $em->flush();
@@ -122,15 +122,6 @@ class MovieController extends AbstractController
 
         return $response;
 
-
-
-        $form = $this->createForm(ShareMovieFormType::class);
-
-        return $this->renderForm('movie/show.html.twig',[
-            'form'=>$form,
-            'movies'=>[],
-            'actorsList'=>[],
-        ]);
 
     }
 
@@ -228,8 +219,6 @@ class MovieController extends AbstractController
 
             return $this->redirectToRoute('moviedetail',["idMovie"=>$id]);
 
-
-
         }
 
 
@@ -239,19 +228,7 @@ class MovieController extends AbstractController
             'movie'=>$movie,
         ]);
 
-
-
     }
 
-
-    /**
-     * @Route("/moviemostshared", name="movie_most_shared")
-     */
-    public function movieMostShared(Request $request)
-    {
-
-        return 2;
-
-    }
 
 }
