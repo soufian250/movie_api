@@ -28,7 +28,7 @@ class Movie
     private $releaseDate;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $shareCount;
 
@@ -37,10 +37,43 @@ class Movie
         return $this->shareCount;
     }
 
-    public function setShareCount(string $shareCount): self
+    public function setShareCount(int $shareCount): self
     {
         $this->shareCount = $shareCount;
 
+        return $this;
+    }
+
+    /**
+     * @ORM\Column(type="text", length=65535)
+     */
+    private $overview;
+
+    public function getOverview(): ?string
+    {
+        return $this->overview;
+    }
+
+    public function setOverview(string $overview): self
+    {
+        $this->overview = $overview;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $externId;
+
+    public function getexternId(): ?string
+    {
+        return $this->externId;
+    }
+
+    public function setexternId(string $externId): self
+    {
+        $this->externId = $externId;
         return $this;
     }
 

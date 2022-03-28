@@ -5,17 +5,25 @@ namespace App\Message;
 
 class ShareViaEmail
 {
-    private $movieId;
+    private $email;
+    private $movieLink;
 
 
-    public function __construct(int $movieId)
+
+    public function __construct(string $emil,string $movieLink)
     {
-        $this->movieId = $movieId;
+        $this->email = $emil;
+        $this->movieLink = $movieLink;
     }
 
 
-    public function getId(): int
+    public function getEmail(): string
     {
-        return $this->movieId;
+        return $this->email;
+    }
+
+    public function getMovieLink(): string
+    {
+        return $this->movieLink;
     }
 }

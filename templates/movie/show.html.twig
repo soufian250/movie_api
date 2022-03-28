@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 30%;
+        }
+
+        /* Add some padding inside the card container */
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+
+
+    <div class="card">
+        <div class="container">
+            <h3>{{ movie.title }}</h3>
+            <span >{{ movie.release_date|date('d/m/Y') }}</span>
+            <p>{{movie.overview}}</p>
+
+            {{ form(form) }}
+
+            <h4>List des acteurs</h4>
+            <ul>
+                {% for actor in actorsList %}
+                    <li>{{ actor.name }}</li>
+                {% endfor %}
+            </ul>
+
+
+        </div>
+    </div>
+
+{% endblock %}

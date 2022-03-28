@@ -29,7 +29,7 @@ class ShareViaEmailHandler implements MessageHandlerInterface
     public function __invoke(ShareViaEmail $message)
     {
 
-        $this->shareEmailService->share($message->getId());
+        $this->shareEmailService->share($message->getEmail(),$message->getMovieLink());
 
     }
 }

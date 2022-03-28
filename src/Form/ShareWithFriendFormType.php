@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class ShareMovieFormType  extends AbstractType
+class ShareWithFriendFormType  extends AbstractType
 {
     private $em;
 
@@ -23,8 +23,7 @@ class ShareMovieFormType  extends AbstractType
 
         $builder
             ->add('email',EmailType::class)
-            ->add('movieLink',TextType::class)
-            ->add('submit',SubmitType::class);
+            ->add('submit',SubmitType::class,array('label' => 'Partager'));
 
     }
 
