@@ -5,7 +5,9 @@ Requirements
 ------------
 
 * PHP 7.2.5;
-* and the [usual Symfony application requirements][1].
+* Composer 2.2.9
+* MySql 8
+
 
 Installation
 ------------
@@ -15,32 +17,36 @@ $ composer install
 ```
 
 
-
-Download pdAdmin
-
-composer create-project appaydin/pd-admin pdadmin
-
-Create and configure the .env file.
-
-Create database schemas
-
+Démarer le serveur 
 ```bash
-$ bin/console doctrine:schema:create --force
+$ symfony server:start
 ```
+
+####- Configurer le fichier .env 
+`DATABASE_URL`
+`MAILER_DSN`
+
+
+Crée la base de donnée
+```bash
+$ bin/console doctrine:database:create
+```
+
+
+Création des tables/schémas de base de données
+```bash
+$ bin/console make:migration
+```
+
+exécuter la migration
+Creating the Database Tables/Schema
+```bash
+$ bin/console doctrine:migrations:migrate
+```
+
+
 
 Utilisez cette commande pour Asyn Emailing
 ```bash
 $ php bin/console messenger:consume async -vv
 ```
-
-Run built-in web server
-
-symfony server:start --no-tls -d
-
-
-
-
-
-
-
-[1]: https://symfony.com/doc/current/setup.html#technical-requirements
