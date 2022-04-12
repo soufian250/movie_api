@@ -14,7 +14,7 @@ Installation
 ------------
 
 ```bash
-$ composer install
+ composer install
 ```
 
 
@@ -25,28 +25,28 @@ $ composer install
 
 Crée la base de donnée
 ```bash
-$ bin/console doctrine:database:create
+ bin/console doctrine:database:create
 ```
 
 
 Création des tables/schémas de base de données
 ```bash
-$ bin/console make:migration
+ bin/console make:migration
 ```
 
 exécuter la migration
 Creating the Database Tables/Schema
 ```bash
-$ bin/console doctrine:migrations:migrate
+ bin/console doctrine:migrations:migrate
 ```
 
 Démarer le serveur
 ```bash
-$ symfony server:start
+ symfony server:start
 ```
 
 
 Utilisez cette commande pour activer l'envoi des mails en mode Async
 ```bash
-$ php bin/console messenger:consume async -vv
+ php bin/console messenger:consume async -vv
 ```
